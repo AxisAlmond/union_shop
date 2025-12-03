@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:union_shop/widgets/footer.dart';
+import 'package:union_shop/widgets/head.dart';
 
 class AboutUs extends StatelessWidget {
   const AboutUs({super.key});
@@ -7,7 +8,14 @@ class AboutUs extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Center(child: Text('About Us')),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+          Head(),
+          Footer(),
+          ]
+        ),
+      ),
     );
   }
 }
