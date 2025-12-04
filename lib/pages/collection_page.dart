@@ -20,18 +20,20 @@ class _CollectionPageState extends State<CollectionPage> {
       price: 35,
       imagePath: 'assets/images/hoodie.jpg',
       isPopular: true,
+      description: 'A stylish hoodie for all sizes',
     ),
     Product(
       title: 'Premium Polo Shirt',
       price: 25,
       imagePath: 'assets/images/polo.jpg',
       isPopular: true,
+      description: 'A polo shirt which comes in multple colours',
     ),
     Product(
       title: 'Essential T-Shirt',
       price: 15,
-      imagePath: 'assets/images/tshirt.jpg',
-      isPopular: false,
+      imagePath: 'assets/images/t-shirt.jpg',
+      description: 'A t-shirt to support the UoP.'
     ),
   ];
 
@@ -67,7 +69,7 @@ class _CollectionPageState extends State<CollectionPage> {
                     ),
                   ),
                   const SizedBox(height: 24),
-                  
+
                   // Filter dropdown
                   Row(
                     children: [
@@ -118,11 +120,7 @@ class _CollectionPageState extends State<CollectionPage> {
                         itemCount: _filteredProducts.length,
                         itemBuilder: (context, index) {
                           final product = _filteredProducts[index];
-                          return ProductCard(
-                            title: product.title,
-                            price: product.price,
-                            imagePath: product.imagePath,
-                          );
+                          return ProductCard(product: product);
                         },
                       );
                     },
