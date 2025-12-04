@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:union_shop/widgets/footer.dart';
 import 'package:union_shop/widgets/head.dart';
-import 'package:union_shop/models/collectioncard.dart'
+import 'package:union_shop/models/collectioncard.dart';
 
 class Collections extends StatelessWidget {
   const Collections({super.key});
@@ -57,32 +57,32 @@ class Collections extends StatelessWidget {
                         children: [
                           CollectionCard(
                             title: 'Clothing',
-                            imagePath: 'assets/images/collection_apparel.jpg',
+                            imagePath: 'assets/images/hoodie.jpg',
                             onTap: () => _navigateToCollection(context, 'Clothing'),
                           ),
                           CollectionCard(
                             title: 'Accessories',
-                            imagePath: 'assets/images/collection_accessories.jpg',
+                            imagePath: 'assets/images/coming-soon.jpg',
                             onTap: () => _navigateToCollection(context, 'Accessories'),
                           ),
                           CollectionCard(
                             title: 'Stationery',
-                            imagePath: 'assets/images/collection_stationery.jpg',
+                            imagePath: 'assets/images/coming-soon.jpg',
                             onTap: () => _navigateToCollection(context, 'Stationery'),
                           ),
                           CollectionCard(
                             title: 'Gifts',
-                            imagePath: 'assets/images/collection_gifts.jpg',
+                            imagePath: 'assets/images/coming-soon.jpg',
                             onTap: () => _navigateToCollection(context, 'Gifts'),
                           ),
                           CollectionCard(
                             title: 'Home & Living',
-                            imagePath: 'assets/images/collection_home.jpg',
+                            imagePath: 'assets/images/coming-soon.jpg',
                             onTap: () => _navigateToCollection(context, 'Home & Living'),
                           ),
                           CollectionCard(
                             title: 'Sale Items',
-                            imagePath: 'assets/images/collection_sale.jpg',
+                            imagePath: 'assets/images/coming-soon.jpg',
                             onTap: () => _navigateToCollection(context, 'Sale Items'),
                           ),
                         ],
