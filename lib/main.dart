@@ -150,22 +150,22 @@ class HomeScreen extends StatelessWidget {
                       children: const [
                         ProductCard(
                           title: 'Placeholder Product 1',
-                          price: '£10.00',
+                          price: 10.00,
                           imagePath: 'assets/images/product1.jpg',
                         ),
                         ProductCard(
                           title: 'Placeholder Product 2',
-                          price: '£15.00',
+                          price: 15.00,
                           imagePath: 'assets/images/product2.jpg',
                         ),
                         ProductCard(
                           title: 'Placeholder Product 3',
-                          price: '£20.00',
+                          price: 20.00,
                           imagePath: 'assets/images/product3.jpg',
                         ),
                         ProductCard(
                           title: 'Placeholder Product 4',
-                          price: '£25.00',
+                          price: 25.00,
                           imagePath: 'assets/images/product4.jpg',
                         ),
                       ],

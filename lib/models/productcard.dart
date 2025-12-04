@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class ProductCard extends StatelessWidget {
   final String title;
-  final int price;
+  final double price;
   final String imagePath;
 
   const ProductCard({
