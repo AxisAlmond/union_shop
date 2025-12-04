@@ -17,21 +17,21 @@ class _CollectionPageState extends State<CollectionPage> {
   final List<Product> _allProducts = [
     Product(
       title: 'Classic Hoodie',
-      price: 35,
+      price: 35.00,
       imagePath: 'assets/images/hoodie.jpg',
       isPopular: true,
       description: 'A stylish hoodie for all sizes',
     ),
     Product(
       title: 'Premium Polo Shirt',
-      price: 25,
+      price: 25.00,
       imagePath: 'assets/images/polo.jpg',
       isPopular: true,
       description: 'A polo shirt which comes in multple colours',
     ),
     Product(
       title: 'Essential T-Shirt',
-      price: 15,
+      price: 15.00,
       imagePath: 'assets/images/t-shirt.jpg',
       description: 'A t-shirt to support the UoP.'
     ),

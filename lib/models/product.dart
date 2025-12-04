@@ -9,7 +9,7 @@ class Product {
     required this.title,
     required this.price,
     required this.imagePath,
-    this.isPopular : false,
+    this.isPopular = false,
     required this.description,
   });
 }
