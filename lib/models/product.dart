@@ -3,11 +3,13 @@ class Product {
   final double price;
   final String imagePath;
   final bool isPopular;
+  final String description;
 
   Product({
     required this.title,
     required this.price,
     required this.imagePath,
-    required this.isPopular,
+    this.isPopular : false,
+    required this.description,
   });
 }
