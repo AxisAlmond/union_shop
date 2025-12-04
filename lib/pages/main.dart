@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:union_shop/product_page.dart';
-import 'package:union_shop/widgets/footer.dart';
 import 'package:union_shop/aboutus_page.dart';
+import 'package:union_shop/collections_page.dart';
+import 'package:union_shop/widgets/footer.dart';
 import 'package:union_shop/widgets/head.dart';
 
 void main() {
@@ -27,6 +28,7 @@ class UnionShopApp extends StatelessWidget {
       routes: {
         '/product': (context) => const ProductPage(),
         '/about': (context) => const AboutUs(),
+        '/collections': (context) => const Collections()
       },
     );
   }
@@ -59,11 +61,9 @@ class HomeScreen extends StatelessWidget {
                   // Background image
                   Positioned.fill(
                     child: Container(
-                      decoration: const BoxDecoration(
+                        decoration: const BoxDecoration(
                         image: DecorationImage(
-                          image: NetworkImage(
-                            'https://shop.upsu.net/cdn/shop/files/PortsmouthCityPostcard2_1024x1024@2x.jpg?v=1752232561',
-                          ),
+                          image: AssetImage('assets/images/hero.jpg'),
                           fit: BoxFit.cover,
                         ),
                       ),
