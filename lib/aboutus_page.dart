@@ -10,10 +10,35 @@ class AboutUs extends StatelessWidget {
     return const Scaffold(
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-          Head(),
-          Footer(),
-          ]
+            Head(),
+            Padding(
+              padding: EdgeInsetsGeometry.all(16),
+              child: Text('Welcome to the Union Shop!',
+              textAlign: TextAlign.center,),
+            ),
+            Padding(
+              padding: EdgeInsetsGeometry.all(16),
+              child: Text(
+                'We’re dedicated to giving you the very best ' +
+                    'University branded products, with a range of clothing and' +
+                    'merchandise available to shop all year round! We even offer ' +
+                    ' an exclusive personalisation service!',)
+            ),
+            Padding(
+                padding: EdgeInsetsGeometry.all(16),
+                child: Text('All online purchases are available ' +
+                    'for delivery or instore collection!')
+                    ),
+            Padding(
+                padding: EdgeInsetsGeometry.all(16),
+                child: Text('We hope you enjoy our products as much as we enjoy ' +
+                    'offering them to you. If you have any questions or comments, ' +
+                    'please don’t hesitate to contact us at hello@upsu.net.')
+                    ),
+            Footer(),
+          ],
         ),
       ),
     );
