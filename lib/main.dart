@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:union_shop/pages/product_page.dart';
 import 'package:union_shop/pages/aboutus_page.dart';
 import 'package:union_shop/pages/collections_page.dart';
+import 'package:union_shop/models/productcard.dart';
 import 'package:union_shop/widgets/footer.dart';
 import 'package:union_shop/widgets/head.dart';
 
