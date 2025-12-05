@@ -7,6 +7,7 @@ import 'package:union_shop/models/product.dart';
 import 'package:union_shop/models/productcard.dart';
 import 'package:union_shop/widgets/footer.dart';
 import 'package:union_shop/widgets/head.dart';
+import 'package:union_shop/repositories/collection_repository.dart';
 
 void main() {
   runApp(const UnionShopApp());
@@ -38,101 +39,55 @@ class UnionShopApp extends StatelessWidget {
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
 
-  // Product data for Featured section
-  final List<Product> _featuredProducts = [
-    Product(
-      title: 'Classic Hoodie',
-      price: 35.00,
-      imagePath: 'assets/images/hoodie.jpg',
-      isPopular: true,
-      description: 'A stylish hoodie for all sizes',
-    ),
-    Product(
-      title: 'Premium Polo Shirt',
-      price: 25.00,
-      imagePath: 'assets/images/polo.jpg',
-      isPopular: true,
-      description: 'A polo shirt which comes in multiple colours',
-    ),
-    Product(
-      title: 'Essential T-Shirt',
-      price: 15.00,
-      imagePath: 'assets/images/t-shirt.jpg',
-      isPopular: false,
-      description: 'A t-shirt to support the UoP.',
-    ),
-    Product(
-      title: 'Classic Hoodie Blue',
-      price: 35.00,
-      imagePath: 'assets/images/hoodie.jpg',
-      isPopular: false,
-      description: 'A stylish hoodie in blue',
-    ),
-  ];
+  // Product data for Featured section - pulled from repository
+  List<Product> get _featuredProducts {
+    return allCollections
+        .expand((collection) => collection.products)
+        .where((product) => product.isPopular)
+        .take(4)
+        .toList();
+  }
 
   // Product data for New Arrivals section
   final List<Product> _newArrivals = [
     Product(
       title: 'Summer T-Shirt',
-      price: 18.00,
-      imagePath: 'assets/images/t-shirt.jpg',
+      price: 3.00,
+      imagePath: 'assets/images/fridge-magnet.png',
       isPopular: false,
       description: 'Perfect for summer wear',
     ),
     Product(
       title: 'Winter Jacket',
       price: 45.00,
-      imagePath: 'assets/images/hoodie.jpg',
+      imagePath: 'assets/images/jack.jpg',
       isPopular: true,
       description: 'Warm and cozy jacket',
     ),
     Product(
-      title: 'Casual Shirt',
-      price: 28.00,
-      imagePath: 'assets/images/polo.jpg',
-      isPopular: false,
+      title: 'Writing Pens',
+      price: 5.00,
+      imagePath: 'assets/images/pen.png',
       description: 'Casual everyday shirt',
     ),
     Product(
-      title: 'Athletic Hoodie',
+      title: 'Athletic Headband',
       price: 40.00,
-      imagePath: 'assets/images/hoodie.jpg',
+      imagePath: 'assets/images/headband.png',
       isPopular: true,
       description: 'Perfect for workouts',
     ),
   ];
 
-  // Product data for Best Sellers section
-  final List<Product> _bestSellers = [
-    Product(
-      title: 'Bestseller Polo',
-      price: 29.00,
-      imagePath: 'assets/images/polo.jpg',
-      isPopular: true,
-      description: 'Our most popular polo shirt',
-    ),
-    Product(
-      title: 'Bestseller Hoodie',
-      price: 38.00,
-      imagePath: 'assets/images/hoodie.jpg',
-      isPopular: true,
-      description: 'Our bestselling hoodie',
-    ),
-    Product(
-      title: 'Classic Tee',
-      price: 16.00,
-      imagePath: 'assets/images/t-shirt.jpg',
-      isPopular: true,
-      description: 'All-time classic t-shirt',
-    ),
-    Product(
-      title: 'Premium Hoodie',
-      price: 50.00,
-      imagePath: 'assets/images/hoodie.jpg',
-      isPopular: true,
-      description: 'Premium quality hoodie',
-    ),
-  ];
+  // Product data for Best Sellers section - pulled from repository
+  List<Product> get _bestSellers {
+    return allCollections
+        .expand((collection) => collection.products)
+        .where((product) => product.isPopular)
+        .skip(0)
+        .take(4)
+        .toList();
+  }
 
   void placeholderCallbackForButtons() {
     // This is the event handler for buttons that don't work yet
