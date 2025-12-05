@@ -11,7 +11,6 @@ import 'package:union_shop/widgets/footer.dart';
 import 'package:union_shop/widgets/head.dart';
 import 'package:union_shop/repositories/collection_repository.dart';
 
-
 void main() {
   runApp(const UnionShopApp());
 }
@@ -57,15 +56,24 @@ class UnionShopApp extends StatelessWidget {
           return MaterialPageRoute(builder: (_) => const Collections());
         }
 
+        // Product detail route (fallback): /product
+        if (pathSegments.length == 1 && pathSegments[0] == 'product') {
+          return MaterialPageRoute(
+            builder: (_) => const ProductPage(),
+            settings: settings,
+          );
+        }
+
         // Collection detail route: /collections/{collectionId}
         if (pathSegments.length == 2 && pathSegments[0] == 'collections') {
           final collectionId = pathSegments[1];
           final collection = getCollectionById(collectionId);
-          
+
           if (collection != null) {
             return MaterialPageRoute(
               builder: (_) => const CollectionPage(),
-              settings: RouteSettings(arguments: collection),
+              settings:
+                  RouteSettings(name: settings.name, arguments: collection),
             );
           }
         }
@@ -74,17 +82,19 @@ class UnionShopApp extends StatelessWidget {
         if (pathSegments.length == 3 && pathSegments[0] == 'collections') {
           final collectionId = pathSegments[1];
           final productTitle = Uri.decodeComponent(pathSegments[2]);
-          
+
           final collection = getCollectionById(collectionId);
           final product = collection?.products.firstWhere(
-            (p) => p.title.toLowerCase().replaceAll(' ', '-') == productTitle.toLowerCase(),
+            (p) =>
+                p.title.toLowerCase().replaceAll(' ', '-') ==
+                productTitle.toLowerCase(),
             orElse: () => collection.products.first,
           );
 
           if (product != null) {
             return MaterialPageRoute(
               builder: (_) => const ProductPage(),
-              settings: RouteSettings(arguments: product),
+              settings: RouteSettings(name: settings.name, arguments: product),
             );
           }
         }
@@ -151,9 +161,6 @@ class HomeScreen extends StatelessWidget {
         .toList();
   }
 
-  void placeholderCallbackForButtons() {
-    // This is the event handler for buttons that don't work yet
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -213,13 +220,15 @@ class HomeScreen extends StatelessWidget {
                         ),
                         const SizedBox(height: 32),
                         ElevatedButton(
-                          onPressed: placeholderCallbackForButtons,
+                          onPressed: () {
+                          Navigator.pushNamed(context, '/collections/apparels');
+                          },
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xFF4d2963),
-                            foregroundColor: Colors.white,
-                            shape: const RoundedRectangleBorder(
-                              borderRadius: BorderRadius.zero,
-                            ),
+                          backgroundColor: const Color(0xFF4d2963),
+                          foregroundColor: Colors.white,
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.zero,
+                          ),
                           ),
                           child: const Text(
                             'BROWSE PRODUCTS',
@@ -238,6 +247,7 @@ class HomeScreen extends StatelessWidget {
               context,
               'FEATURED PRODUCTS',
               _featuredProducts,
+              null,
             ),
 
             // New Arrivals Section
@@ -245,6 +255,7 @@ class HomeScreen extends StatelessWidget {
               context,
               'NEW ARRIVALS',
               _newArrivals,
+              null, // These don't belong to a specific collection
             ),
 
             // Best Sellers Section
@@ -252,6 +263,7 @@ class HomeScreen extends StatelessWidget {
               context,
               'BEST SELLERS',
               _bestSellers,
+              null,
             ),
 
             // Footer
@@ -266,47 +278,50 @@ class HomeScreen extends StatelessWidget {
     BuildContext context,
     String title,
     List<Product> products,
+    String? collectionId, // Add this parameter
   ) {
     return Container(
-      color: Colors.white,
-      child: Padding(
-        padding: const EdgeInsets.all(40.0),
-        child: Column(
-          children: [
-            Text(
-              title,
-              style: const TextStyle(
-                fontSize: 20,
-                color: Colors.black,
-                letterSpacing: 1,
+        color: Colors.white,
+        child: Padding(
+          padding: const EdgeInsets.all(40.0),
+          child: Column(
+            children: [
+              Text(
+                title,
+                style: const TextStyle(
+                  fontSize: 20,
+                  color: Colors.black,
+                  letterSpacing: 1,
+                ),
               ),
-            ),
-            const SizedBox(height: 48),
-            LayoutBuilder(
-              builder: (context, constraints) {
-                int crossAxisCount = 2;
-                if (constraints.maxWidth < 600) crossAxisCount = 1;
-                if (constraints.maxWidth > 1200) crossAxisCount = 4;
+              const SizedBox(height: 48),
+              LayoutBuilder(
+                builder: (context, constraints) {
+                  int crossAxisCount = 2;
+                  if (constraints.maxWidth < 600) crossAxisCount = 1;
+                  if (constraints.maxWidth > 1200) crossAxisCount = 4;
 
-                return GridView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: crossAxisCount,
-                    crossAxisSpacing: 24,
-                    mainAxisSpacing: 48,
-                    childAspectRatio: 0.75,
-                  ),
-                  itemCount: products.length,
-                  itemBuilder: (context, index) {
-                    return ProductCard(product: products[index]);
-                  },
-                );
-              },
-            ),
-          ],
-        ),
-      ),
-    );
+                  return GridView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: crossAxisCount,
+                      crossAxisSpacing: 24,
+                      mainAxisSpacing: 48,
+                      childAspectRatio: 0.75,
+                    ),
+                    itemCount: products.length,
+                    itemBuilder: (context, index) {
+                      return ProductCard(
+                        product: products[index],
+                        collectionId: collectionId,
+                      );
+                    },
+                  );
+                },
+              ),
+            ],
+          ),
+        ));
   }
 }
