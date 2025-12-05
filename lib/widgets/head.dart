@@ -27,6 +27,58 @@ class Head extends StatelessWidget {
     // This is the event handler for buttons that don't work yet
   }
 
+  void _showMobileMenu(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) {
+        return Container(
+          padding: const EdgeInsets.symmetric(vertical: 16),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ListTile(
+                title: const Text('Home'),
+                onTap: () {
+                  Navigator.pop(context);
+                  navigateToHome(context);
+                },
+              ),
+              ListTile(
+                title: const Text('Shopping'),
+                onTap: () {
+                  Navigator.pop(context);
+                  navigateToCollections(context);
+                },
+              ),
+              ListTile(
+                title: const Text('SALE!'),
+                textColor: Colors.red,
+                onTap: () {
+                  Navigator.pop(context);
+                  navigateToSale(context);
+                },
+              ),
+              ListTile(
+                title: const Text('About'),
+                onTap: () {
+                  Navigator.pop(context);
+                  navigateToAbout(context);
+                },
+              ),
+              ListTile(
+                title: const Text('Login/Sign up'),
+                onTap: () {
+                  Navigator.pop(context);
+                  navigateToLogin(context);
+                },
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -164,7 +216,7 @@ class Head extends StatelessWidget {
                             minWidth: 32,
                             minHeight: 32,
                           ),
-                          onPressed: placeholderCallbackForButtons,
+                          onPressed: () => _showMobileMenu(context),
                         ),
                       ],
                     ),
