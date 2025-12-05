@@ -21,7 +21,12 @@ final List<Collection> allCollections = [
         isPopular: true,
         description: 'A polo shirt which comes in multiple colours',
       ),
-      // ... more products
+      Product(
+        title: 'Standard sweatshirt',
+        price: 24.00,
+        imagePath: 'assets/images/sweatshirt.png',
+        description: 'A sweatshirt for yourself',
+      ),
     ],
   ),
   Collection(
@@ -33,10 +38,22 @@ final List<Collection> allCollections = [
         title: 'Discounted Polo',
         price: 15.00,
         imagePath: 'assets/images/polo.jpg',
-        isPopular: true,
-        description: 'Was £25, now £15!',
+        description: 'Was £25.00, now £15.00!',
       ),
-      // ... more sale products
+      Product(
+        title: 'Discounted Mug',
+        price: 6.00,
+        imagePath: 'assets/images/mug.png',
+        isPopular: true,
+        description: 'Was £12.00, now £6.00!',
+      ),
+      Product(
+        title: 'Discounted Tie',
+        price: 4.50,
+        imagePath: 'assets/images/tie.png',
+        isPopular: true,
+        description: 'Was £9, now £4.50!',
+      ),
     ],
   ),
 ];
