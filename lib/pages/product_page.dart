@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:union_shop/widgets/footer.dart';
 import 'package:union_shop/widgets/head.dart';
 import 'package:union_shop/models/product.dart';
+import 'package:union_shop/repositories/cart_repository.dart';
 
 class ProductPage extends StatefulWidget {
   const ProductPage({super.key});
@@ -198,18 +199,42 @@ class _ProductPageState extends State<ProductPage> {
                     width: double.infinity,
                     child: ElevatedButton(
                       onPressed: () {
-                        String cartMessage =
-                            'Added $_quantity x $title to cart';
-                        if (_selectedSize != null) {
-                          cartMessage += ' ($_selectedSize)';
-                        }
-                        if (_selectedColor != null) {
-                          cartMessage += ' ($_selectedColor)';
-                        }
+                        if (product != null) {
+                          // Add to cart with selected options
+                          final quantity = _quantity > 0 ? _quantity : 1;
+                          CartRepository.instance.addItem(
+                            product: product,
+                            quantity: quantity,
+                            selectedSize: _selectedSize,
+                            selectedColor: _selectedColor,
+                          );
 
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text(cartMessage)),
-                        );
+                          // Show success message
+                          String cartMessage =
+                              'Added $quantity x $title to cart';
+                          if (_selectedSize != null) {
+                            cartMessage += ' (Size: $_selectedSize)';
+                          }
+                          if (_selectedColor != null) {
+                            cartMessage += ' (Color: $_selectedColor)';
+                          }
+
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(cartMessage),
+                              action: SnackBarAction(
+                                label: 'View Cart',
+                                onPressed: () {
+                                  Navigator.pushNamedAndRemoveUntil(
+                                    context,
+                                    '/cart',
+                                    (route) => false,
+                                  );
+                                },
+                              ),
+                            ),
+                          );
+                        }
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xFF4d2963),
