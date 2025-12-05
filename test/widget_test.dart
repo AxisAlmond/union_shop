@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:union_shop/widgets/footer.dart';
-import 'package:union_shop/aboutus_page.dart';
+import 'package:union_shop/pages/aboutus_page.dart';
 
 void main() {
   group('Footer Widget Tests', () {

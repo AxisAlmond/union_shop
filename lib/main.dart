@@ -6,7 +6,7 @@ import 'package:union_shop/pages/collection_page.dart';
 import 'package:union_shop/pages/authentication_page.dart';
 import 'package:union_shop/pages/signup_page.dart';
 import 'package:union_shop/models/product.dart';
-import 'package:union_shop/models/productcard.dart';
+import 'package:union_shop/widgets/productcard.dart';
 import 'package:union_shop/widgets/footer.dart';
 import 'package:union_shop/widgets/head.dart';
 import 'package:union_shop/repositories/collection_repository.dart';

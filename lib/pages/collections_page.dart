@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:union_shop/widgets/footer.dart';
 import 'package:union_shop/widgets/head.dart';
-import 'package:union_shop/models/collectioncard.dart';
+import 'package:union_shop/widgets/collectioncard.dart';
 import 'package:union_shop/repositories/collection_repository.dart';
 
 class Collections extends StatelessWidget {

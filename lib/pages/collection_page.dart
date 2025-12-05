@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:union_shop/widgets/head.dart';
 import 'package:union_shop/widgets/footer.dart';
 import 'package:union_shop/models/product.dart';
-import 'package:union_shop/models/productcard.dart';
+import 'package:union_shop/widgets/productcard.dart';
 import 'package:union_shop/models/collection.dart';
 
 class CollectionPage extends StatefulWidget {
