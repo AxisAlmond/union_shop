@@ -4,6 +4,8 @@ class Product {
   final String imagePath;
   final bool isPopular;
   final String description;
+  final bool isSale;
+  final double? originalPrice;
 
   Product({
     required this.title,
@@ -11,5 +13,7 @@ class Product {
     required this.imagePath,
     this.isPopular = false,
     required this.description,
+    this.isSale = false,
+    this.originalPrice,
   });
 }
