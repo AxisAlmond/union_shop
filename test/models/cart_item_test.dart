@@ -3,7 +3,7 @@ import 'package:union_shop/models/cart_item.dart';
 import 'package:union_shop/models/product.dart';
 
 void main() {
-  Product _product({
+  Product product({
     String title = 'Test Product',
     double price = 10.0,
   }) {
@@ -17,11 +17,11 @@ void main() {
 
   group('CartItem', () {
     test('isSameItem compares product + size + color', () {
-      final base = CartItem(product: _product(), quantity: 1, selectedSize: 'M', selectedColor: 'Red');
-      final same = CartItem(product: _product(), quantity: 2, selectedSize: 'M', selectedColor: 'Red');
-      final diffSize = CartItem(product: _product(), quantity: 1, selectedSize: 'L', selectedColor: 'Red');
-      final diffColor = CartItem(product: _product(), quantity: 1, selectedSize: 'M', selectedColor: 'Blue');
-      final diffProduct = CartItem(product: _product(title: 'Other'), quantity: 1, selectedSize: 'M', selectedColor: 'Red');
+      final base = CartItem(product: product(), quantity: 1, selectedSize: 'M', selectedColor: 'Red');
+      final same = CartItem(product: product(), quantity: 2, selectedSize: 'M', selectedColor: 'Red');
+      final diffSize = CartItem(product: product(), quantity: 1, selectedSize: 'L', selectedColor: 'Red');
+      final diffColor = CartItem(product: product(), quantity: 1, selectedSize: 'M', selectedColor: 'Blue');
+      final diffProduct = CartItem(product: product(title: 'Other'), quantity: 1, selectedSize: 'M', selectedColor: 'Red');
 
       expect(base.isSameItem(same), isTrue);
       expect(base.isSameItem(diffSize), isFalse);
@@ -30,22 +30,22 @@ void main() {
     });
 
     test('isSameItem works when size/color are null', () {
-      final base = CartItem(product: _product(), quantity: 1);
-      final same = CartItem(product: _product(), quantity: 3);
-      final withSize = CartItem(product: _product(), quantity: 1, selectedSize: 'M');
+      final base = CartItem(product: product(), quantity: 1);
+      final same = CartItem(product: product(), quantity: 3);
+      final withSize = CartItem(product: product(), quantity: 1, selectedSize: 'M');
 
       expect(base.isSameItem(same), isTrue);
       expect(base.isSameItem(withSize), isFalse);
     });
 
     test('totalPrice multiplies price and quantity', () {
-      final item = CartItem(product: _product(price: 12.5), quantity: 3);
+      final item = CartItem(product: product(price: 12.5), quantity: 3);
       expect(item.totalPrice, 37.5);
     });
 
     test('copyWith overrides provided fields', () {
       final item = CartItem(
-        product: _product(),
+        product: product(),
         quantity: 1,
         selectedSize: 'S',
         selectedColor: 'Red',
