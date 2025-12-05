@@ -69,12 +69,12 @@ class Collections extends StatelessWidget {
                           ),
                           CollectionCard(
                             title: 'Accessories',
-                            imagePath: 'assets/images/coming-soon.jpg',
+                            imagePath: 'assets/images/bag.png',
                             onTap: () => _navigateToCollection(context, 'accessories'),
                           ),
                           CollectionCard(
                             title: 'Stationery',
-                            imagePath: 'assets/images/coming-soon.jpg',
+                            imagePath: 'assets/images/pen.png',
                             onTap: () => _navigateToCollection(context, 'stationery'),
                           ),
                           CollectionCard(
