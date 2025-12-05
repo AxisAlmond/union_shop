@@ -2,17 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:union_shop/widgets/footer.dart';
 import 'package:union_shop/widgets/head.dart';
 import 'package:union_shop/models/collectioncard.dart';
+import 'package:union_shop/repositories/collection_repository.dart';
 
 class Collections extends StatelessWidget {
   const Collections({super.key});
 
-  void _navigateToCollection(BuildContext context, String collectionName) {
-    // Only "Clothing" is functional; navigate to a real collection detail page
-    if (collectionName == 'Clothing') {
-      Navigator.pushNamed(context, '/collection/clothing');
+  void _navigateToCollection(BuildContext context, String collectionId) {
+    final collection = getCollectionById(collectionId);
+    
+    if (collection != null) {
+      Navigator.pushNamed(
+        context,
+        '/collection',
+        arguments: collection,
+      );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('$collectionName collection coming soon')),
+        const SnackBar(content: Text('Collection not found')),
       );
     }
   }
@@ -58,32 +64,32 @@ class Collections extends StatelessWidget {
                           CollectionCard(
                             title: 'Clothing',
                             imagePath: 'assets/images/hoodie.jpg',
-                            onTap: () => _navigateToCollection(context, 'Clothing'),
+                            onTap: () => _navigateToCollection(context, 'apparel'),
+                          ),
+                          CollectionCard(
+                            title: 'Sales',
+                            imagePath: 'assets/images/polo.jpg',
+                            onTap: () => _navigateToCollection(context, 'sales'),
                           ),
                           CollectionCard(
                             title: 'Accessories',
                             imagePath: 'assets/images/coming-soon.jpg',
-                            onTap: () => _navigateToCollection(context, 'Accessories'),
+                            onTap: () => _navigateToCollection(context, 'accessories'),
                           ),
                           CollectionCard(
                             title: 'Stationery',
                             imagePath: 'assets/images/coming-soon.jpg',
-                            onTap: () => _navigateToCollection(context, 'Stationery'),
+                            onTap: () => _navigateToCollection(context, 'stationery'),
                           ),
                           CollectionCard(
                             title: 'Gifts',
                             imagePath: 'assets/images/coming-soon.jpg',
-                            onTap: () => _navigateToCollection(context, 'Gifts'),
+                            onTap: () => _navigateToCollection(context, 'gifts'),
                           ),
                           CollectionCard(
                             title: 'Home & Living',
                             imagePath: 'assets/images/coming-soon.jpg',
-                            onTap: () => _navigateToCollection(context, 'Home & Living'),
-                          ),
-                          CollectionCard(
-                            title: 'Sale Items',
-                            imagePath: 'assets/images/coming-soon.jpg',
-                            onTap: () => _navigateToCollection(context, 'Sale Items'),
+                            onTap: () => _navigateToCollection(context, 'home'),
                           ),
                         ],
                       );
