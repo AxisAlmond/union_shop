@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:union_shop/repositories/cart_repository.dart';
 
 class Head extends StatelessWidget {
   const Head({super.key});
@@ -21,6 +22,10 @@ class Head extends StatelessWidget {
 
   void navigateToLogin(BuildContext context) {
     Navigator.pushNamedAndRemoveUntil(context, '/login', (route) => false);
+  }
+
+  void navigateToCart(BuildContext context) {
+    Navigator.pushNamedAndRemoveUntil(context, '/cart', (route) => false);
   }
 
   void placeholderCallbackForButtons() {
@@ -186,18 +191,55 @@ class Head extends StatelessWidget {
                           ),
                           onPressed: placeholderCallbackForButtons,
                         ),
-                        IconButton(
-                          icon: const Icon(
-                            Icons.shopping_bag_outlined,
-                            size: 18,
-                            color: Colors.grey,
-                          ),
-                          padding: const EdgeInsets.all(8),
-                          constraints: const BoxConstraints(
-                            minWidth: 32,
-                            minHeight: 32,
-                          ),
-                          onPressed: placeholderCallbackForButtons,
+                        // Shopping bag with badge
+                        ListenableBuilder(
+                          listenable: CartRepository.instance,
+                          builder: (context, child) {
+                            final itemCount = CartRepository.instance.getTotalItems();
+                            return Stack(
+                              clipBehavior: Clip.none,
+                              children: [
+                                IconButton(
+                                  icon: const Icon(
+                                    Icons.shopping_bag_outlined,
+                                    size: 18,
+                                    color: Colors.grey,
+                                  ),
+                                  padding: const EdgeInsets.all(8),
+                                  constraints: const BoxConstraints(
+                                    minWidth: 32,
+                                    minHeight: 32,
+                                  ),
+                                  onPressed: () => navigateToCart(context),
+                                ),
+                                if (itemCount > 0)
+                                  Positioned(
+                                    right: 0,
+                                    top: 0,
+                                    child: Container(
+                                      padding: const EdgeInsets.all(4),
+                                      decoration: BoxDecoration(
+                                        color: Colors.red,
+                                        shape: BoxShape.circle,
+                                      ),
+                                      constraints: const BoxConstraints(
+                                        minWidth: 16,
+                                        minHeight: 16,
+                                      ),
+                                      child: Text(
+                                        '$itemCount',
+                                        style: const TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 10,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+                                  ),
+                              ],
+                            );
+                          },
                         ),
                         IconButton(
                           icon: const Icon(
