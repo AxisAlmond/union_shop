@@ -116,7 +116,10 @@ class _CollectionPageState extends State<CollectionPage> {
                         itemCount: filteredProducts.length,
                         itemBuilder: (context, index) {
                           final product = filteredProducts[index];
-                          return ProductCard(product: product);
+                          return ProductCard(
+                            product: product,
+                            collectionId: collection?.id, // Pass collection ID
+                          );
                         },
                       );
                     },
