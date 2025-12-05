@@ -3,10 +3,6 @@ import 'package:flutter/material.dart';
 class Footer extends StatelessWidget {
   const Footer({super.key});
 
-  void _navigateToAboutUs(BuildContext context) {
-    Navigator.pushNamed(context, '/about');
-  }
-
   void _onContactTap() {
     // Dummy link
   }
@@ -29,16 +25,15 @@ class Footer extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 16),
-          Row(children: [
-            TextButton(
-                onPressed: () => _navigateToAboutUs(context),
-                child: const Text('About Us'),
-              ),
-            TextButton(
-                onPressed: _onContactTap,
-                child: const Text('Contact Us'),
-              ),
-          ]),
+          TextButton(
+            onPressed: _onContactTap,
+            child: const Text('Contact Us'),
+          ),
+          const SizedBox(height: 16),
+          TextButton(
+            onPressed: _onContactTap,
+            child: const Text('Newsletter'),
+          ),
           const SizedBox(height: 8),
           const Text(
             '© 2025 Union Shop. All rights reserved.',
