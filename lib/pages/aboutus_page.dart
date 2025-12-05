@@ -22,24 +22,24 @@ class AboutUs extends StatelessWidget {
             Padding(
                 padding: EdgeInsetsGeometry.all(16),
                 child: Text(
-                    'We’re dedicated to giving you the very best ' +
-                        'University branded products, with a range of clothing and ' +
-                        'merchandise available to shop all year round! We even offer ' +
+                    'We’re dedicated to giving you the very best '
+                        'University branded products, with a range of clothing and '
+                        'merchandise available to shop all year round! We even offer '
                         ' an exclusive personalisation service!',
                     textAlign: TextAlign.center,
                     textScaler: TextScaler.linear(1.33))),
             Padding(
                 padding: EdgeInsetsGeometry.all(16),
                 child: Text(
-                    'All online purchases are available ' +
+                    'All online purchases are available ' 
                         'for delivery or instore collection!',
                     textAlign: TextAlign.center,
                     textScaler: TextScaler.linear(1.33))),
             Padding(
                 padding: EdgeInsetsGeometry.all(16),
                 child: Text(
-                    'We hope you enjoy our products as much as we enjoy ' +
-                        'offering them to you. If you have any questions or comments, ' +
+                    'We hope you enjoy our products as much as we enjoy ' 
+                        'offering them to you. If you have any questions or comments, ' 
                         'please don’t hesitate to contact us at hello@upsu.net.',
                     textAlign: TextAlign.center,
                     textScaler: TextScaler.linear(1.33))),
