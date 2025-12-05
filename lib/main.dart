@@ -60,7 +60,7 @@ class HomeScreen extends StatelessWidget {
     Product(
       title: 'Winter Jacket',
       price: 45.00,
-      imagePath: 'assets/images/jack.jpg',
+      imagePath: 'assets/images/jacket.png',
       isPopular: true,
       description: 'Warm and cozy jacket',
     ),
