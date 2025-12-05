@@ -12,6 +12,7 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.0
   go_router: ^17.0.0
+  test_cov_console: ^0.2.2
 
 dev_dependencies:
   flutter_test:
