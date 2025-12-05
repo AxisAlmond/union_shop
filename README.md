@@ -78,42 +78,45 @@ GitHub: [@AxisAlmond](https://github.com/AxisAlmond)
 - **Accessibility**: Semantic HTML structure and proper widget hierarchy
 
 ## Project Structure
-├── lib/
-├── main.dart # App entry point and routing configuration
-├── models/
-│ ├── cart_item.dart # Cart item model with comparison logic
-│ ├── collection.dart # Collection data model
-│ └── product.dart # Product data model
-├── pages/
-│ ├── aboutus_page.dart # About Us page
-│ ├── authentication_page.dart # Login page
-│ ├── cart_page.dart # Shopping cart interface
-│ ├── collection_page.dart # Single collection view
-│ ├── collections_page.dart # All collections view
-│ ├── product_page.dart # Product details with cart integration
-│ └── signup_page.dart # Sign-up page
-├── repositories/
-│ ├── cart_repository.dart # Cart state management (ChangeNotifier)
-│ └── collection_repository.dart # Collection data provider
-└── widgets/
-├── collectioncard.dart # Reusable collection card
-├── footer.dart # Footer with opening times
-├── head.dart # Responsive header with cart badge
-└── productcard.dart # Reusable product card
 
-test/
-├── widget_test.dart # Footer widget tests
-├── models/
-│ └── cart_item_test.dart # Cart item model tests
-├── pages/
-│ └── cart_page_test.dart # Cart page widget tests
-├── repositories/
-│ ├── cart_repository_test.dart # Cart repository unit tests
-│ └── collection_repository_test.dart # Collection data tests
-└── widgets/
-├── collectioncard_test.dart # Collection card widget tests
-├── head_test.dart # Header widget tests
-└── productcard_test.dart # Product card widget tests
+```
+├── lib/
+│   ├── main.dart                      # App entry point and routing configuration
+│   ├── models/
+│   │   ├── cart_item.dart            # Cart item model with comparison logic
+│   │   ├── collection.dart           # Collection data model
+│   │   └── product.dart              # Product data model
+│   ├── pages/
+│   │   ├── aboutus_page.dart         # About Us page
+│   │   ├── authentication_page.dart  # Login page
+│   │   ├── cart_page.dart            # Shopping cart interface
+│   │   ├── collection_page.dart      # Single collection view
+│   │   ├── collections_page.dart     # All collections view
+│   │   ├── product_page.dart         # Product details with cart integration
+│   │   └── signup_page.dart          # Sign-up page
+│   ├── repositories/
+│   │   ├── cart_repository.dart      # Cart state management (ChangeNotifier)
+│   │   └── collection_repository.dart # Collection data provider
+│   └── widgets/
+│       ├── collectioncard.dart       # Reusable collection card
+│       ├── footer.dart               # Footer with opening times
+│       ├── head.dart                 # Responsive header with cart badge
+│       └── productcard.dart          # Reusable product card
+│
+└── test/
+    ├── widget_test.dart              # Footer widget tests
+    ├── models/
+    │   └── cart_item_test.dart       # Cart item model tests
+    ├── pages/
+    │   └── cart_page_test.dart       # Cart page widget tests
+    ├── repositories/
+    │   ├── cart_repository_test.dart # Cart repository unit tests
+    │   └── collection_repository_test.dart # Collection data tests
+    └── widgets/
+        ├── collectioncard_test.dart  # Collection card widget tests
+        ├── head_test.dart            # Header widget tests
+        └── productcard_test.dart     # Product card widget tests
+```
 
 ## Dependencies
 
