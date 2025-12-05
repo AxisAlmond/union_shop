@@ -51,11 +51,10 @@ class HomeScreen extends StatelessWidget {
   // Product data for New Arrivals section
   final List<Product> _newArrivals = [
     Product(
-      title: 'Summer T-Shirt',
+      title: 'Fridge Magnet',
       price: 3.00,
       imagePath: 'assets/images/fridge-magnet.png',
-      isPopular: false,
-      description: 'Perfect for summer wear',
+      description: 'The UoP logo as a magnet',
     ),
     Product(
       title: 'Winter Jacket',
@@ -63,12 +62,13 @@ class HomeScreen extends StatelessWidget {
       imagePath: 'assets/images/jacket.png',
       isPopular: true,
       description: 'Warm and cozy jacket',
+      availableSizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     ),
     Product(
       title: 'Writing Pens',
       price: 5.00,
       imagePath: 'assets/images/pen.png',
-      description: 'Casual everyday shirt',
+      description: 'UoP logo writing pen',
     ),
     Product(
       title: 'Athletic Headband',
@@ -76,6 +76,8 @@ class HomeScreen extends StatelessWidget {
       imagePath: 'assets/images/headband.png',
       isPopular: true,
       description: 'Perfect for workouts',
+      availableSizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+      availableColors: ['Black', 'Grey'],
     ),
   ];
 
