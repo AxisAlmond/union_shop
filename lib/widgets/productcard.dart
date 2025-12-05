@@ -3,18 +3,37 @@ import 'package:union_shop/models/product.dart';
 
 class ProductCard extends StatelessWidget {
   final Product product;
+  final String? collectionId; // Optional collection context
 
-  const ProductCard({super.key, required this.product});
+  const ProductCard({
+    super.key,
+    required this.product,
+    this.collectionId,
+  });
+
+  String _getProductSlug() {
+    return product.title.toLowerCase().replaceAll(' ', '-');
+  }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(
-          context,
-          '/product',
-          arguments: product,
-        );
+        if (collectionId != null) {
+          // Navigate with collection context: /collections/apparel/classic-hoodie
+          Navigator.pushNamed(
+            context,
+            '/collections/$collectionId/${_getProductSlug()}',
+            arguments: product,
+          );
+        } else {
+          // Fallback for products without collection (e.g., home page)
+          Navigator.pushNamed(
+            context,
+            '/collections/featured/${_getProductSlug()}',
+            arguments: product,
+          );
+        }
       },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
