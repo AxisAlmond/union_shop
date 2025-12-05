@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:union_shop/pages/product_page.dart';
 import 'package:union_shop/pages/aboutus_page.dart';
 import 'package:union_shop/pages/collections_page.dart';
@@ -12,6 +13,7 @@ import 'package:union_shop/widgets/head.dart';
 import 'package:union_shop/repositories/collection_repository.dart';
 
 void main() {
+  setUrlStrategy(PathUrlStrategy());
   runApp(const UnionShopApp());
 }
 
