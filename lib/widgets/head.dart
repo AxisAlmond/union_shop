@@ -7,6 +7,22 @@ class Head extends StatelessWidget {
     Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
   }
 
+  void navigateToCollections(BuildContext context) {
+    Navigator.pushNamedAndRemoveUntil(context, '/collections', (route) => false);
+  }
+
+  void navigateToSale(BuildContext context) {
+    Navigator.pushNamedAndRemoveUntil(context, '/collections/sales', (route) => false);
+  }
+
+  void navigateToAbout(BuildContext context) {
+    Navigator.pushNamedAndRemoveUntil(context, '/about', (route) => false);
+  }
+
+  void navigateToLogin(BuildContext context) {
+    Navigator.pushNamedAndRemoveUntil(context, '/login', (route) => false);
+  }
+
   void placeholderCallbackForButtons() {
     // This is the event handler for buttons that don't work yet
   }
@@ -40,7 +56,7 @@ class Head extends StatelessWidget {
                       navigateToHome(context);
                     },
                     child: Image.asset(
-                      'assets/images/browse_background.png',
+                      'assets/images/logo.png',
                       height: 18,
                       fit: BoxFit.cover,
                       errorBuilder: (context, error, stackTrace) {
@@ -57,6 +73,42 @@ class Head extends StatelessWidget {
                     ),
                   ),
                   const Spacer(),
+                  // Navigation links (visible on desktop >800px)
+                  LayoutBuilder(
+                    builder: (context, constraints) {
+                      if (constraints.maxWidth > 800) {
+                        return Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            _NavigationTile(
+                              label: 'Home',
+                              onTap: () => navigateToHome(context),
+                            ),
+                            _NavigationTile(
+                              label: 'Shopping',
+                              onTap: () => navigateToCollections(context),
+                            ),
+                            _NavigationTile(
+                              label: 'SALE!',
+                              onTap: () => navigateToSale(context),
+                              isHighlight: true,
+                            ),
+                            _NavigationTile(
+                              label: 'About',
+                              onTap: () => navigateToAbout(context),
+                            ),
+                            _NavigationTile(
+                              label: 'Login/Sign up',
+                              onTap: () => navigateToLogin(context),
+                            ),
+                            const SizedBox(width: 16),
+                          ],
+                        );
+                      }
+                      return const SizedBox.shrink();
+                    },
+                  ),
+                  // Icons (always visible)
                   ConstrainedBox(
                     constraints: const BoxConstraints(maxWidth: 600),
                     child: Row(
@@ -122,6 +174,36 @@ class Head extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class _NavigationTile extends StatelessWidget {
+  final String label;
+  final VoidCallback onTap;
+  final bool isHighlight;
+
+  const _NavigationTile({
+    required this.label,
+    required this.onTap,
+    this.isHighlight = false,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 12),
+      child: GestureDetector(
+        onTap: onTap,
+        child: Text(
+          label,
+          style: TextStyle(
+            color: isHighlight ? Colors.red : Colors.black,
+            fontSize: isHighlight ? 14 : 13,
+            fontWeight: isHighlight ? FontWeight.bold : FontWeight.normal,
+          ),
+        ),
       ),
     );
   }
