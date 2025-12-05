@@ -172,11 +172,10 @@ class CartPage extends StatelessWidget {
                               SizedBox(
                                 width: double.infinity,
                                 child: ElevatedButton(
-                                  onPressed: null, // Non-functional for now
+                                  onPressed: () {}, // Empty function - does nothing
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor: const Color(0xFF4d2963),
                                     foregroundColor: Colors.white,
-                                    disabledBackgroundColor: Colors.grey[400],
                                     padding: const EdgeInsets.symmetric(
                                       vertical: 16,
                                     ),
