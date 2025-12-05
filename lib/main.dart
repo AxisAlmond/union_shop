@@ -29,7 +29,7 @@ class UnionShopApp extends StatelessWidget {
         '/product': (context) => const ProductPage(),
         '/about': (context) => const AboutUs(),
         '/collections': (context) => const Collections(),
-        '/collection/apparel': (context) => const CollectionPage()
+        '/collection': (context) => const CollectionPage(), // Changed from /collection/clothing
       },
     );
   }
