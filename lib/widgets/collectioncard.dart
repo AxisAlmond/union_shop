@@ -3,47 +3,65 @@ import 'package:flutter/material.dart';
 class CollectionCard extends StatelessWidget {
   final String title;
   final String imagePath;
-  final VoidCallback onTap;
+  final String? collectionId; // Make it optional
+  final VoidCallback? onTap; // Add optional callback
 
   const CollectionCard({
     super.key,
     required this.title,
     required this.imagePath,
-    required this.onTap,
+    this.collectionId,
+    this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: onTap ?? () {
+        if (collectionId != null) {
+          Navigator.pushNamed(context, '/collections/$collectionId');
+        }
+      },
       child: Container(
-        color: Colors.grey[200],
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(8),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.2),
+              spreadRadius: 1,
+              blurRadius: 4,
+              offset: const Offset(0, 2),
+            ),
+          ],
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            // Collection thumbnail image
             Expanded(
-              child: Image.asset(
-                imagePath,
-                fit: BoxFit.cover,
-                errorBuilder: (context, error, stackTrace) {
-                  return Container(
-                    color: Colors.grey[300],
-                    child: const Center(
-                      child: Icon(Icons.collections, size: 48, color: Colors.grey),
-                    ),
-                  );
-                },
+              child: ClipRRect(
+                borderRadius: const BorderRadius.vertical(top: Radius.circular(8)),
+                child: Image.asset(
+                  imagePath,
+                  fit: BoxFit.cover,
+                  errorBuilder: (context, error, stackTrace) {
+                    return Container(
+                      color: Colors.grey[300],
+                      child: const Center(
+                        child: Icon(Icons.collections, size: 48, color: Colors.grey),
+                      ),
+                    );
+                  },
+                ),
               ),
             ),
-            // Collection title
             Padding(
-              padding: const EdgeInsets.all(8),
+              padding: const EdgeInsets.all(12),
               child: Text(
                 title,
                 style: const TextStyle(
                   fontSize: 16,
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.w600,
                   color: Colors.black,
                 ),
                 textAlign: TextAlign.center,
