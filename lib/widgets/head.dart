@@ -125,41 +125,35 @@ class Head extends StatelessWidget {
                     ),
                   ),
                   const Spacer(),
-                  // Navigation links (visible on desktop >800px)
-                  LayoutBuilder(
-                    builder: (context, constraints) {
-                      if (constraints.maxWidth > 800) {
-                        return Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            _NavigationTile(
-                              label: 'Home',
-                              onTap: () => navigateToHome(context),
-                            ),
-                            _NavigationTile(
-                              label: 'Shopping',
-                              onTap: () => navigateToCollections(context),
-                            ),
-                            _NavigationTile(
-                              label: 'SALE!',
-                              onTap: () => navigateToSale(context),
-                              isHighlight: true,
-                            ),
-                            _NavigationTile(
-                              label: 'About',
-                              onTap: () => navigateToAbout(context),
-                            ),
-                            _NavigationTile(
-                              label: 'Login/Sign up',
-                              onTap: () => navigateToLogin(context),
-                            ),
-                            const SizedBox(width: 16),
-                          ],
-                        );
-                      }
-                      return const SizedBox.shrink();
-                    },
-                  ),
+                  // Navigation links (visible on desktop >600px)
+                  if (MediaQuery.of(context).size.width > 600)
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        _NavigationTile(
+                          label: 'Home',
+                          onTap: () => navigateToHome(context),
+                        ),
+                        _NavigationTile(
+                          label: 'Shopping',
+                          onTap: () => navigateToCollections(context),
+                        ),
+                        _NavigationTile(
+                          label: 'SALE!',
+                          onTap: () => navigateToSale(context),
+                          isHighlight: true,
+                        ),
+                        _NavigationTile(
+                          label: 'About',
+                          onTap: () => navigateToAbout(context),
+                        ),
+                        _NavigationTile(
+                          label: 'Login/Sign up',
+                          onTap: () => navigateToLogin(context),
+                        ),
+                        const SizedBox(width: 16),
+                      ],
+                    ),
                   // Icons (always visible)
                   ConstrainedBox(
                     constraints: const BoxConstraints(maxWidth: 600),
