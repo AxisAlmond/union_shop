@@ -28,9 +28,10 @@ class ProductCard extends StatelessWidget {
           );
         } else {
           // Fallback for products without collection (e.g., home page)
+          // Just show the product without proper URL structure
           Navigator.pushNamed(
             context,
-            '/collections/featured/${_getProductSlug()}',
+            '/product',
             arguments: product,
           );
         }
@@ -89,10 +90,10 @@ class ProductCard extends StatelessWidget {
                 )
               else
                 // Regular price
-                Text(
-                  '£${product.price.toStringAsFixed(2)}',
-                  style: const TextStyle(fontSize: 13, color: Colors.grey),
-                ),
+              Text(
+                '£${product.price.toStringAsFixed(2)}',
+                style: const TextStyle(fontSize: 13, color: Colors.grey),
+              ),
             ],
           ),
         ],
