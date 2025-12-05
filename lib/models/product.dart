@@ -6,6 +6,8 @@ class Product {
   final String description;
   final bool isSale;
   final double? originalPrice;
+  final List<String>? availableSizes;
+  final List<String>? availableColors;
 
   Product({
     required this.title,
@@ -15,5 +17,7 @@ class Product {
     required this.description,
     this.isSale = false,
     this.originalPrice,
+    this.availableSizes,
+    this.availableColors,
   });
 }
