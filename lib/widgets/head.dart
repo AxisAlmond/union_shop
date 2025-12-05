@@ -160,12 +160,10 @@ class Head extends StatelessWidget {
                       ],
                     ),
                   // Icons (always visible)
-                  ConstrainedBox(
-                    constraints: const BoxConstraints(maxWidth: 600),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        IconButton(
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      IconButton(
                           icon: const Icon(
                             Icons.search,
                             size: 18,
@@ -218,7 +216,7 @@ class Head extends StatelessWidget {
                                     top: 0,
                                     child: Container(
                                       padding: const EdgeInsets.all(4),
-                                      decoration: BoxDecoration(
+                                      decoration: const BoxDecoration(
                                         color: Colors.red,
                                         shape: BoxShape.circle,
                                       ),
@@ -256,7 +254,6 @@ class Head extends StatelessWidget {
                         ),
                       ],
                     ),
-                  ),
                 ],
               ),
             ),

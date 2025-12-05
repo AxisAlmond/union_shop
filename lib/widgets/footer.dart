@@ -116,20 +116,27 @@ class Footer extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: 8),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisSize: MainAxisSize.max,
         children: [
-          Text(
-            day,
-            style: const TextStyle(
-              color: Colors.black87,
-              fontSize: 14,
+          Expanded(
+            child: Text(
+              day,
+              style: const TextStyle(
+                color: Colors.black87,
+                fontSize: 14,
+              ),
             ),
           ),
-          Text(
-            time,
-            style: const TextStyle(
-              color: Colors.grey,
-              fontSize: 14,
+          const SizedBox(width: 8),
+          Flexible(
+            child: Text(
+              time,
+              textAlign: TextAlign.right,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(
+                color: Colors.grey,
+                fontSize: 14,
+              ),
             ),
           ),
         ],
