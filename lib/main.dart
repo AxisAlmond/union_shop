@@ -27,15 +27,70 @@ class UnionShopApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF4d2963)),
       ),
-      home: HomeScreen(),
       initialRoute: '/',
-      routes: {
-        '/product': (context) => const ProductPage(),
-        '/about': (context) => const AboutUs(),
-        '/collections': (context) => const Collections(),
-        '/collection': (context) => const CollectionPage(),
-        '/login': (context) => const AuthenticationPage(),
-        '/signup': (context) => const SignupPage(),
+      onGenerateRoute: (settings) {
+        final uri = Uri.parse(settings.name ?? '/');
+        final pathSegments = uri.pathSegments;
+
+        // Home route: /
+        if (pathSegments.isEmpty) {
+          return MaterialPageRoute(builder: (_) => HomeScreen());
+        }
+
+        // About route: /about
+        if (pathSegments.length == 1 && pathSegments[0] == 'about') {
+          return MaterialPageRoute(builder: (_) => const AboutUs());
+        }
+
+        // Login route: /login
+        if (pathSegments.length == 1 && pathSegments[0] == 'login') {
+          return MaterialPageRoute(builder: (_) => const AuthenticationPage());
+        }
+
+        // Signup route: /signup
+        if (pathSegments.length == 1 && pathSegments[0] == 'signup') {
+          return MaterialPageRoute(builder: (_) => const SignupPage());
+        }
+
+        // Collections list route: /collections
+        if (pathSegments.length == 1 && pathSegments[0] == 'collections') {
+          return MaterialPageRoute(builder: (_) => const Collections());
+        }
+
+        // Collection detail route: /collections/{collectionId}
+        if (pathSegments.length == 2 && pathSegments[0] == 'collections') {
+          final collectionId = pathSegments[1];
+          final collection = getCollectionById(collectionId);
+          
+          if (collection != null) {
+            return MaterialPageRoute(
+              builder: (_) => const CollectionPage(),
+              settings: RouteSettings(arguments: collection),
+            );
+          }
+        }
+
+        // Product detail route: /collections/{collectionId}/{productTitle}
+        if (pathSegments.length == 3 && pathSegments[0] == 'collections') {
+          final collectionId = pathSegments[1];
+          final productTitle = Uri.decodeComponent(pathSegments[2]);
+          
+          final collection = getCollectionById(collectionId);
+          final product = collection?.products.firstWhere(
+            (p) => p.title.toLowerCase().replaceAll(' ', '-') == productTitle.toLowerCase(),
+            orElse: () => collection.products.first,
+          );
+
+          if (product != null) {
+            return MaterialPageRoute(
+              builder: (_) => const ProductPage(),
+              settings: RouteSettings(arguments: product),
+            );
+          }
+        }
+
+        // 404 fallback
+        return MaterialPageRoute(builder: (_) => HomeScreen());
       },
     );
   }
