@@ -43,10 +43,37 @@ class ProductCard extends StatelessWidget {
                 maxLines: 2,
               ),
               const SizedBox(height: 4),
-              Text(
-                '£${product.price.toStringAsFixed(2)}',
-                style: const TextStyle(fontSize: 13, color: Colors.grey),
-              ),
+              // Price section with sale pricing
+              if (product.isSale && product.originalPrice != null)
+                Row(
+                  children: [
+                    // Original price (strikethrough)
+                    Text(
+                      '£${product.originalPrice!.toStringAsFixed(2)}',
+                      style: const TextStyle(
+                        fontSize: 12,
+                        color: Colors.grey,
+                        decoration: TextDecoration.lineThrough,
+                      ),
+                    ),
+                    const SizedBox(width: 8),
+                    // Sale price (bold, red)
+                    Text(
+                      '£${product.price.toStringAsFixed(2)}',
+                      style: const TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ],
+                )
+              else
+                // Regular price
+                Text(
+                  '£${product.price.toStringAsFixed(2)}',
+                  style: const TextStyle(fontSize: 13, color: Colors.grey),
+                ),
             ],
           ),
         ],
