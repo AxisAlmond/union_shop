@@ -4,7 +4,7 @@ import 'package:union_shop/widgets/productcard.dart';
 import 'package:union_shop/models/product.dart';
 
 void main() {
-  Widget _wrap(Widget child) {
+  Widget wrap(Widget child) {
     return MaterialApp(
       home: Scaffold(
         body: SizedBox(
@@ -32,7 +32,7 @@ void main() {
         description: 'A test hoodie',
       );
 
-      await tester.pumpWidget(_wrap(ProductCard(product: product)));
+      await tester.pumpWidget(wrap(ProductCard(product: product)));
 
       expect(find.text('Test Hoodie'), findsOneWidget);
       expect(find.text('£25.00'), findsOneWidget);
@@ -48,7 +48,7 @@ void main() {
         originalPrice: 30.00,
       );
 
-      await tester.pumpWidget(_wrap(ProductCard(product: product)));
+      await tester.pumpWidget(wrap(ProductCard(product: product)));
 
       expect(find.text('Sale Item'), findsOneWidget);
       expect(find.text('£30.00'), findsOneWidget); // Original price
@@ -63,7 +63,7 @@ void main() {
         description: 'desc',
       );
 
-      await tester.pumpWidget(_wrap(ProductCard(product: product)));
+      await tester.pumpWidget(wrap(ProductCard(product: product)));
 
       // Should show error icon
       expect(find.byIcon(Icons.image_not_supported), findsOneWidget);
@@ -77,7 +77,7 @@ void main() {
         description: 'A hoodie',
       );
 
-      await tester.pumpWidget(_wrap(
+      await tester.pumpWidget(wrap(
         ProductCard(
           product: product,
           collectionId: 'apparel',
@@ -99,7 +99,7 @@ void main() {
         description: 'A product',
       );
 
-      await tester.pumpWidget(_wrap(
+      await tester.pumpWidget(wrap(
         SizedBox(
           width: 200,
           height: 300,
@@ -122,7 +122,7 @@ void main() {
         description: 'A polo',
       );
 
-      await tester.pumpWidget(_wrap(
+      await tester.pumpWidget(wrap(
         SizedBox(
           width: 200,
           height: 300,
@@ -148,7 +148,7 @@ void main() {
         description: 'desc',
       );
 
-      await tester.pumpWidget(_wrap(ProductCard(product: product)));
+      await tester.pumpWidget(wrap(ProductCard(product: product)));
 
       final textWidget = tester.widget<Text>(find.text(product.title));
       expect(textWidget.maxLines, 2);

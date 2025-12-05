@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:union_shop/widgets/collectioncard.dart';
 
 void main() {
-  Widget _wrap(Widget child) {
+  Widget wrap(Widget child) {
     return MaterialApp(
       home: Scaffold(
         body: SizedBox(
@@ -24,7 +24,7 @@ void main() {
 
   group('CollectionCard Widget Tests', () {
     testWidgets('displays collection title', (tester) async {
-      await tester.pumpWidget(_wrap(
+      await tester.pumpWidget(wrap(
         const CollectionCard(
           title: 'Summer Collection',
           imagePath: 'assets/images/collection.jpg',
@@ -36,7 +36,7 @@ void main() {
     });
 
     testWidgets('shows error icon when image fails to load', (tester) async {
-      await tester.pumpWidget(_wrap(
+      await tester.pumpWidget(wrap(
         const CollectionCard(
           title: 'Test Collection',
           imagePath: 'invalid/path.jpg',
@@ -49,7 +49,7 @@ void main() {
     });
 
     testWidgets('navigates to collection route when tapped with collectionId', (tester) async {
-      await tester.pumpWidget(_wrap(
+      await tester.pumpWidget(wrap(
         const CollectionCard(
           title: 'Apparel Collection',
           imagePath: 'assets/images/apparel.jpg',
@@ -66,7 +66,7 @@ void main() {
     testWidgets('uses custom onTap callback when provided', (tester) async {
       bool tapped = false;
 
-      await tester.pumpWidget(_wrap(
+      await tester.pumpWidget(wrap(
         CollectionCard(
           title: 'Custom Collection',
           imagePath: 'assets/images/custom.jpg',
@@ -83,7 +83,7 @@ void main() {
     });
 
     testWidgets('does not navigate when collectionId is null and no custom onTap', (tester) async {
-      await tester.pumpWidget(_wrap(
+      await tester.pumpWidget(wrap(
         const CollectionCard(
           title: 'No ID Collection',
           imagePath: 'assets/images/collection.jpg',
@@ -98,7 +98,7 @@ void main() {
     });
 
     testWidgets('has rounded corners and shadow', (tester) async {
-      await tester.pumpWidget(_wrap(
+      await tester.pumpWidget(wrap(
         const CollectionCard(
           title: 'Styled Collection',
           imagePath: 'assets/images/collection.jpg',
@@ -120,7 +120,7 @@ void main() {
     });
 
     testWidgets('centers title text', (tester) async {
-      await tester.pumpWidget(_wrap(
+      await tester.pumpWidget(wrap(
         const CollectionCard(
           title: 'Centered Title',
           imagePath: 'assets/images/collection.jpg',

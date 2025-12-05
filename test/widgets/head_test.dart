@@ -11,7 +11,7 @@ void main() {
     repo.clearCart();
   });
 
-  Widget _wrap({double width = 500}) {
+  Widget wrap({double width = 500}) {
     return MediaQuery(
       data: MediaQueryData(size: Size(width, 800)),
       child: const MaterialApp(
@@ -24,12 +24,12 @@ void main() {
 
   group('Head Widget Tests', () {
     testWidgets('displays top banner with UNION SHOP text', (tester) async {
-      await tester.pumpWidget(_wrap());
+      await tester.pumpWidget(wrap());
       expect(find.text('UNION SHOP'), findsOneWidget);
     });
 
     testWidgets('displays all icon buttons', (tester) async {
-      await tester.pumpWidget(_wrap());
+      await tester.pumpWidget(wrap());
       
       expect(find.byIcon(Icons.search), findsOneWidget);
       expect(find.byIcon(Icons.person_outline), findsOneWidget);
@@ -38,7 +38,7 @@ void main() {
     });
 
     testWidgets('displays navigation links on desktop width', (tester) async {
-      await tester.pumpWidget(_wrap(width: 1200));
+      await tester.pumpWidget(wrap(width: 1200));
       
       expect(find.text('Home'), findsOneWidget);
       expect(find.text('Shopping'), findsOneWidget);
@@ -49,9 +49,9 @@ void main() {
 
     testWidgets('hides navigation links on mobile width', (tester) async {
       await tester.pumpWidget(
-        MediaQuery(
-          data: const MediaQueryData(size: Size(500, 800)),
-          child: const MaterialApp(
+        const MediaQuery(
+          data: MediaQueryData(size: Size(500, 800)),
+          child: MaterialApp(
             home: Scaffold(body: Head()),
           ),
         ),
@@ -64,9 +64,9 @@ void main() {
 
     testWidgets('shows mobile menu when menu icon tapped', (tester) async {
       await tester.pumpWidget(
-        MediaQuery(
-          data: const MediaQueryData(size: Size(500, 800)),
-          child: const MaterialApp(
+        const MediaQuery(
+          data: MediaQueryData(size: Size(500, 800)),
+          child: MaterialApp(
             home: Scaffold(body: Head()),
           ),
         ),
@@ -95,7 +95,7 @@ void main() {
         quantity: 2,
       );
 
-      await tester.pumpWidget(_wrap());
+      await tester.pumpWidget(wrap());
       await tester.pumpAndSettle();
       
       // Badge should show count
@@ -103,7 +103,7 @@ void main() {
     });
 
     testWidgets('cart badge hidden when cart is empty', (tester) async {
-      await tester.pumpWidget(_wrap());
+      await tester.pumpWidget(wrap());
       await tester.pumpAndSettle();
       
       // No badge should be visible
@@ -111,7 +111,7 @@ void main() {
     });
 
     testWidgets('logo displays with error fallback', (tester) async {
-      await tester.pumpWidget(_wrap());
+      await tester.pumpWidget(wrap());
       
       // Should have logo or error fallback
       expect(find.byType(Image), findsWidgets);

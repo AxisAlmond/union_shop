@@ -7,7 +7,7 @@ import 'package:union_shop/repositories/cart_repository.dart';
 void main() {
   final repo = CartRepository.instance;
 
-  Product _product({
+  Product product({
     String title = 'Test Product',
     double price = 10.0,
   }) {
@@ -23,7 +23,7 @@ void main() {
     repo.clearCart();
   });
 
-  Widget _wrap(Widget child) {
+  Widget wrap(Widget child) {
     return MediaQuery(
       data: const MediaQueryData(size: Size(500, 1600)),
       child: MaterialApp(
@@ -37,7 +37,7 @@ void main() {
   }
 
   testWidgets('shows empty state with CTA', (tester) async {
-    await tester.pumpWidget(_wrap(const CartPage()));
+    await tester.pumpWidget(wrap(const CartPage()));
     await tester.pumpAndSettle();
 
     expect(find.text('Your cart is empty'), findsOneWidget);
@@ -45,10 +45,10 @@ void main() {
   });
 
   testWidgets('shows items and subtotal', (tester) async {
-    repo.addItem(product: _product(price: 5.0), quantity: 2, selectedSize: 'M', selectedColor: 'Red');
-    repo.addItem(product: _product(title: 'P2', price: 3.0), quantity: 1);
+    repo.addItem(product: product(price: 5.0), quantity: 2, selectedSize: 'M', selectedColor: 'Red');
+    repo.addItem(product: product(title: 'P2', price: 3.0), quantity: 1);
 
-    await tester.pumpWidget(_wrap(const CartPage()));
+    await tester.pumpWidget(wrap(const CartPage()));
     await tester.pumpAndSettle();
 
     expect(find.text('Shopping Cart'), findsOneWidget);
