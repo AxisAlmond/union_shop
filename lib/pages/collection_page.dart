@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:union_shop/widgets/head.dart';
 import 'package:union_shop/widgets/footer.dart';
-import 'package:union_shop/models/productcard.dart';
 import 'package:union_shop/models/product.dart';
+import 'package:union_shop/models/productcard.dart';
+import 'package:union_shop/models/collection.dart';
 
 class CollectionPage extends StatefulWidget {
   const CollectionPage({super.key});
@@ -14,38 +15,21 @@ class CollectionPage extends StatefulWidget {
 class _CollectionPageState extends State<CollectionPage> {
   String _selectedFilter = 'All products';
 
-  final List<Product> _allProducts = [
-    Product(
-      title: 'Classic Hoodie',
-      price: 35.00,
-      imagePath: 'assets/images/hoodie.jpg',
-      isPopular: true,
-      description: 'A stylish hoodie for all sizes',
-    ),
-    Product(
-      title: 'Premium Polo Shirt',
-      price: 25.00,
-      imagePath: 'assets/images/polo.jpg',
-      isPopular: true,
-      description: 'A polo shirt which comes in multple colours',
-    ),
-    Product(
-      title: 'Essential T-Shirt',
-      price: 15.00,
-      imagePath: 'assets/images/t-shirt.jpg',
-      description: 'A t-shirt to support the UoP.'
-    ),
-  ];
+  List<Product> _getFilteredProducts(Collection? collection) {
+    final products = collection?.products ?? [];
 
-  List<Product> get _filteredProducts {
     if (_selectedFilter == 'Popular') {
-      return _allProducts.where((product) => product.isPopular).toList();
+      return products.where((product) => product.isPopular).toList();
     }
-    return _allProducts;
+    return products;
   }
 
   @override
   Widget build(BuildContext context) {
+    final collection =
+        ModalRoute.of(context)?.settings.arguments as Collection?;
+    final filteredProducts = _getFilteredProducts(collection);
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -60,14 +44,25 @@ class _CollectionPageState extends State<CollectionPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   // Collection title
-                  const Text(
-                    'Clothing Collection',
-                    style: TextStyle(
+                  Text(
+                    collection?.title ?? 'Collection',
+                    style: const TextStyle(
                       fontSize: 28,
                       fontWeight: FontWeight.bold,
                       color: Colors.black,
                     ),
                   ),
+                  if (collection?.description != null &&
+                      collection!.description.isNotEmpty) ...[
+                    const SizedBox(height: 8),
+                    Text(
+                      collection.description,
+                      style: const TextStyle(
+                        fontSize: 16,
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ],
                   const SizedBox(height: 24),
 
                   // Filter dropdown
@@ -75,7 +70,8 @@ class _CollectionPageState extends State<CollectionPage> {
                     children: [
                       const Text(
                         'Filter: ',
-                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                        style: TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.w500),
                       ),
                       const SizedBox(width: 8),
                       DropdownButton<String>(
@@ -117,9 +113,9 @@ class _CollectionPageState extends State<CollectionPage> {
                           mainAxisSpacing: 16,
                           childAspectRatio: 0.75,
                         ),
-                        itemCount: _filteredProducts.length,
+                        itemCount: filteredProducts.length,
                         itemBuilder: (context, index) {
-                          final product = _filteredProducts[index];
+                          final product = filteredProducts[index];
                           return ProductCard(product: product);
                         },
                       );
