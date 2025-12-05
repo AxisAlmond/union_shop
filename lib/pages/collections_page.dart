@@ -11,14 +11,10 @@ class Collections extends StatelessWidget {
     final collection = getCollectionById(collectionId);
     
     if (collection != null) {
-      Navigator.pushNamed(
-        context,
-        '/collection',
-        arguments: collection,
-      );
+      Navigator.pushNamed(context, '/collections/$collectionId', arguments: collection);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Collection not found')),
+        SnackBar(content: Text('$collectionId collection coming soon')),
       );
     }
   }
@@ -61,15 +57,15 @@ class Collections extends StatelessWidget {
                         mainAxisSpacing: 16,
                         childAspectRatio: 0.85,
                         children: [
-                          CollectionCard(
+                          const CollectionCard(
                             title: 'Clothing',
                             imagePath: 'assets/images/hoodie.jpg',
-                            onTap: () => _navigateToCollection(context, 'apparel'),
+                            collectionId: 'apparel',
                           ),
-                          CollectionCard(
+                          const CollectionCard(
                             title: 'Sales',
                             imagePath: 'assets/images/polo.jpg',
-                            onTap: () => _navigateToCollection(context, 'sales'),
+                            collectionId: 'sales',
                           ),
                           CollectionCard(
                             title: 'Accessories',
